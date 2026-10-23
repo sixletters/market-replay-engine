@@ -112,19 +112,23 @@ Reference strategies: (1) spread/inventory-driven market making, (2) order-book 
 ## Module layout
 
 ```text
-/cmd                  # binaries (feed recorder, replay server, backtest CLI)
-/internal/marketdata  # venue adapters, normalized events
-/internal/orderbook   # L2 book engine
-/internal/recorder    # Parquet event recorder
-/internal/replay      # replay engine + virtual clock
-/internal/matching    # matching engine
-/internal/oms         # order state machine
-/internal/risk        # pre-trade risk checks
-/internal/portfolio   # positions, balances, P&L
-/internal/api         # HTTP/WebSocket server
-/web                  # React UI
-/python               # notebooks, analysis, DuckDB queries
-/docs                 # this documentation
+/cmd                       # binaries (market-replay CLI, marketdata-daemon)
+/internal/marketdata       # normalized events, Source contract, venue registry
+/internal/marketdata/sim   # deterministic simulated feed source (implemented)
+/internal/orderbook        # L2 book engine (implemented)
+/internal/daemon           # book registry + dispatch loop (implemented)
+/internal/recorder         # event sinks; JSONL implemented, Parquet pending
+/internal/replayio         # JSONL event codec (decoder + encoder)
+/internal/cli              # replay/validate/bench CLI (implemented)
+/internal/api              # HTTP API server (REST implemented, WebSocket pending)
+/internal/replay           # replay engine + virtual clock (pending)
+/internal/matching         # matching engine (pending)
+/internal/oms              # order state machine (pending)
+/internal/risk             # pre-trade risk checks (pending)
+/internal/portfolio        # positions, balances, P&L (pending)
+/web                       # React UI (pending)
+/python                    # notebooks, analysis, DuckDB queries (pending)
+/docs                      # this documentation
 ```
 
 ## Data stores
