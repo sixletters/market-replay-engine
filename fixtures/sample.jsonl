@@ -1,0 +1,5 @@
+{"type":"snapshot","market":{"venue":"coinbase","instrument":"BTC-USD"},"cursor":{"sequence":100},"bids":[{"price":100,"quantity":5},{"price":99,"quantity":10},{"price":98,"quantity":4}],"asks":[{"price":102,"quantity":4},{"price":103,"quantity":6},{"price":104,"quantity":7}]}
+{"type":"update","market":{"venue":"coinbase","instrument":"BTC-USD"},"cursor":{"sequence":101},"changes":[{"side":0,"price":100,"quantityAfter":3}]}
+{"type":"update","market":{"venue":"coinbase","instrument":"BTC-USD"},"cursor":{"sequence":102},"changes":[{"side":1,"price":102,"quantityAfter":0}]}
+{"type":"update","market":{"venue":"coinbase","instrument":"BTC-USD"},"cursor":{"sequence":103},"changes":[{"side":1,"price":101,"quantityAfter":8}]}
+{"type":"update","market":{"venue":"coinbase","instrument":"BTC-USD"},"cursor":{"sequence":104},"changes":[{"side":0,"price":99,"quantityAfter":12}]}
