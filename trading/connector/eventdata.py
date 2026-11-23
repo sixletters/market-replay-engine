@@ -5,10 +5,18 @@ import pandas as pd
 
 def load_orderbook(path=None):
     if path is None:
-        path = (
-            Path(__file__).resolve().parents[2]
-            / "data/session-001/venue=sim/instrument=BTC-USD/events.jsonl"
+        data_dir = Path(__file__).resolve().parents[2] / "data"
+        session = max(
+            (
+                folder for folder in data_dir.glob("session-*")
+                if folder.is_dir() and folder.name.removeprefix("session-").isdigit()
+            ),
+            key=lambda folder: int(folder.name.removeprefix("session-")),
+            default=None,
         )
+        if session is None:
+            raise FileNotFoundError(f"No numbered session folders found in {data_dir}.")
+        path = session / "venue=sim/instrument=BTC-USD/events.jsonl"
 
     df = pd.read_json(path, lines=True)
     history = []
@@ -50,8 +58,6 @@ def load_orderbook(path=None):
 
         sequence = next_sequence
 
-
-    # dict version
         history.append({
             "sequence": sequence,
             "venue" : event.market["venue"],

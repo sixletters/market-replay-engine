@@ -1,14 +1,28 @@
-﻿# Python Strategy Backtesting
+# Trading
 
-This workspace will support Python backtesting in Jupyter Notebooks. The workflow will load recorded market data through reusable connector code, prepare it in a notebook, and run strategies defined in separate Python files.
+Python workspace for loading recorded market data, developing strategies, and presenting strategy research and backtest results.
 
-## Planned structure
+## Folder contents and planned structure
 
-- **`connector/`** will contain code for reading the market data output by the recording system and making it available to the backtest notebooks. The existing `booksnapshot_call.py` and `booksnapshot_requirements.md` will be rewritten for this purpose; their names may also change.
-- **`backtest/`** will contain Jupyter Notebooks that import connector code to load and transform data, call strategies, run backtests, and inspect results.
-- **`strategy/`** will contain multiple strategies as Python files. The backtest notebooks will import and run the selected strategy.
+```text
+trading/
+|-- connector/                       # Read recordings and prepare market data
+|   |-- eventdata.py                 # Reconstruct order books from JSONL snapshots and updates
+|   `-- best_bid_ask.py              # Extract best bid/ask prices and quantities
+|-- backtest/                        # Strategy research notebooks and backtest results
+|   |-- trading_config.py            # Fee, slippage, annualization, and strategy threshold settings
+|   `-- <strategy>.ipynb             # Research: backtest runs, charts, and findings
+|-- strategy/                        # Strategy logic and design
+|   |-- cross_venue/
+|   `-- cross_vwap/
+|-- analysis/                        # Reusable performance calculations
+|   `-- metrics.py                   # Return, CAGR, drawdown, volatility, Sharpe, and Sortino
+`-- README.md
+```
 
-## Workflow
+Keep data loading in `connector/`, reusable strategy logic in `strategy/`, and performance calculations in `analysis/`. Use `backtest/` to research each strategy and present its backtest results, including assumptions, trades, portfolio performance, charts, and conclusions. Strategy notebooks shown above are planned additions.
+
+## Current workflow
 
 ```text
 Recorded market data
@@ -26,6 +40,4 @@ Strategy Python file runs within the backtest
 Notebook displays backtest results and analysis
 ```
 
-## Future implementation
-
-Later work will connect the Python strategies to a trading engine that processes current order-book data, runs the strategy logic to generate signals, and manages order execution based on those signals.
+The cross-venue Python strategy currently estimates opportunities. Complete trade simulation and strategy research notebooks with backtest results are planned.
